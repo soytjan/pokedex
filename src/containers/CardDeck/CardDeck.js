@@ -28,9 +28,7 @@ export class CardDeck extends Component {
 
   handleCardClick = (card) => {
     const { toggleSelected } = this.props;
-    console.log('before', card)
     const updatedCard = {...card, isSelected: !card.isSelected}
-    console.log('after', updatedCard)
     toggleSelected(updatedCard);
   }
 
@@ -76,7 +74,7 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   addPokemon: (pokemon) => dispatch(addPokemon(pokemon)),
   updatePokemon: (pokemon) => dispatch(updatePokemon(pokemon)),
-  toggleSelected: (onePokemon) => dispatch(toggleSelected(onePokemon))
+  toggleSelected: (card) => dispatch(toggleSelected(card))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDeck);
