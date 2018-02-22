@@ -12,6 +12,21 @@ export const mockPokemon = [
   }
 ]
 
+export const toggledMockPokemon = [
+  {
+    "id": "1",
+    "name": "normal",
+    "isSelected": true,
+    "pokemon": [
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
+    ]
+  }
+]
+
 export const mockSinglePokemon = {
   "name": "bulbasaur",
   "id": "1",
@@ -28,3 +43,13 @@ export const mockSinglePokemon = {
     "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
   }
 }
+
+export const updatedMockPokemon = [
+  {
+    "id": "1",
+    "name": "normal",
+    "pokemon": [
+      mockSinglePokemon
+    ]
+  }
+]

@@ -5,6 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Card
+    onClick={[MockFunction]}
     pokemon={
       Object {
         "id": "1",
@@ -31,38 +32,18 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <h3>
-        normal
-      </h3>,
+      "children": Array [
+        <h2>
+          normal
+        </h2>,
+        null,
+      ],
       "className": "Card",
+      "onClick": [Function],
     },
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": "normal",
-      },
-      "ref": null,
-      "rendered": "normal",
-      "type": "h3",
-    },
-    "type": "article",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <h3>
-          normal
-        </h3>,
-        "className": "Card",
-      },
-      "ref": null,
-      "rendered": Object {
+    "rendered": Array [
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
@@ -71,8 +52,161 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": "normal",
-        "type": "h3",
+        "type": "h2",
       },
+      null,
+    ],
+    "type": "article",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2>
+            normal
+          </h2>,
+          null,
+        ],
+        "className": "Card",
+        "onClick": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "normal",
+          },
+          "ref": null,
+          "rendered": "normal",
+          "type": "h2",
+        },
+        null,
+      ],
+      "type": "article",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`Card should match snapshot when toggled 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Card
+    onClick={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "id": "1",
+              "name": "normal",
+              "pokemon": Array [
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+              ],
+            },
+          ],
+        ],
+      }
+    }
+    pokemon={
+      Object {
+        "id": "1",
+        "name": "normal",
+        "pokemon": Array [
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+        ],
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h2>
+          normal
+        </h2>,
+        null,
+      ],
+      "className": "Card",
+      "onClick": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "normal",
+        },
+        "ref": null,
+        "rendered": "normal",
+        "type": "h2",
+      },
+      null,
+    ],
+    "type": "article",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2>
+            normal
+          </h2>,
+          null,
+        ],
+        "className": "Card",
+        "onClick": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "normal",
+          },
+          "ref": null,
+          "rendered": "normal",
+          "type": "h2",
+        },
+        null,
+      ],
       "type": "article",
     },
   ],
