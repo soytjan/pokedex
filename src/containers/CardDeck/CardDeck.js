@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPokemon } from '../../actions';
+import { addPokemon, updatePokemon, toggleSelected } from '../../actions';
 import { fetchPokemonType, fetchAllPokemon } from '../../helper';
 import pikachu from '../../loading.gif';
 import Card from '../../components/Card/Card';
@@ -15,15 +15,23 @@ export class CardDeck extends Component {
     }
   }
 
+  // refactor this to break this out into different functions
   componentDidMount = async () => {
+    const { addPokemon, updatePokemon } = this.props;
     this.setState({ isLoading: true })
-    const pokemon = await fetchAllPokemon();
-    this.props.addPokemon(pokemon);
-    this.setState({ isLoading: false })
+    const pokemonType = await fetchPokemonType();
+    addPokemon(pokemonType);
+    this.setState({ isLoading: false });
+    const allPokemon = await fetchAllPokemon(pokemonType);
+    updatePokemon(allPokemon);
   }
 
   handleCardClick = (card) => {
-
+    const { toggleSelected } = this.props;
+    console.log('before', card)
+    const updatedCard = {...card, isSelected: !card.isSelected}
+    console.log('after', updatedCard)
+    toggleSelected(updatedCard);
   }
 
   renderCards = () => {
@@ -31,6 +39,7 @@ export class CardDeck extends Component {
     return pokemon.map(pokemon => {
       return <Card 
         pokemon={pokemon}
+        onClick={this.handleCardClick}
         key={pokemon.id} 
       />
     })
@@ -56,6 +65,7 @@ export class CardDeck extends Component {
 
 CardDeck.propTypes = {
   addPokemon: PropTypes.func,
+  updatePokemon: PropTypes.func,
   pokemon: PropTypes.array
 };
 
@@ -64,7 +74,9 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  addPokemon: (pokemon) => dispatch(addPokemon(pokemon))
+  addPokemon: (pokemon) => dispatch(addPokemon(pokemon)),
+  updatePokemon: (pokemon) => dispatch(updatePokemon(pokemon)),
+  toggleSelected: (onePokemon) => dispatch(toggleSelected(onePokemon))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDeck);

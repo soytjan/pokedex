@@ -6,9 +6,9 @@ import './Card.css';
 // need to check and see isOpened = true || false
 
 
-const Card = ({pokemon}) => {
+const Card = ({pokemon, onClick}) => {
   return (
-    <article className='Card'>
+    <article className='Card' onClick={() =>onClick(pokemon)}>
       <h3>{pokemon.name}</h3> 
     </article>
   )
