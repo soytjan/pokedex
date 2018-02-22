@@ -15,16 +15,32 @@ export class CardDeck extends Component {
     }
   }
 
-  // refactor this to break this out into different functions
   componentDidMount = async () => {
-    const { addPokemon, updatePokemon } = this.props;
     this.setState({ isLoading: true })
-    const pokemonType = await fetchPokemonType();
-    addPokemon(pokemonType);
-    this.setState({ isLoading: false });
-    const allPokemon = await fetchAllPokemon(pokemonType);
-    updatePokemon(allPokemon);
+    await this.getInitialPokemonTypes();
+    this.setState({ isLoading: false })
+    this.getPokemonDetails(this.props.pokemon);
   }
+
+  getInitialPokemonTypes = async () => {
+    const { addPokemon } = this.props;
+    try {
+      const pokemonType = await fetchPokemonType();
+      addPokemon(pokemonType);
+    } catch (error) {
+      throw(error)
+    }
+  }
+
+  getPokemonDetails = async (pokemon) => {
+    const { updatePokemon } = this.props;
+    try {
+      const allPokemon = await fetchAllPokemon(pokemon);
+      updatePokemon(allPokemon);
+    } catch (error) {
+      throw error;
+    }
+  } 
 
   handleCardClick = (card) => {
     const { toggleSelected } = this.props;
@@ -46,7 +62,7 @@ export class CardDeck extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <div>
+        <div className='gif'>
           <img src={pikachu} alt="pikachu loading gif"/>
         </div>
       )

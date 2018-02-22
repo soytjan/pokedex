@@ -1,17 +1,23 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CardDeck, mapStateToProps, mapDispatchToProps } from './CardDeck';
-import { mockPokemon } from '../../mockData';
+import { mockPokemon, mockSinglePokemon } from '../../mockData';
 
 describe('CardDeck', () => {
   let renderedComponent;
   let mockAddPokemon;
+  let mockUpdatePokemon;
+  let mockToggleSelected;
   
   beforeEach(() => {
-    mockAddPokemon = jest.fn()
+    mockAddPokemon = jest.fn();
+    mockUpdatePokemon = jest.fn();
+    mockToggleSelected = jest.fn();
     renderedComponent = shallow(
       <CardDeck 
         addPokemon={mockAddPokemon}
+        updatePokemon={mockUpdatePokemon}
+        toggleSelected={mockToggleSelected}
         pokemon={mockPokemon} 
       />
     )
@@ -38,4 +44,54 @@ describe('CardDeck', () => {
 
     expect(mockDispatch).toHaveBeenCalled();
   });
+
+  describe('getInitialPokemonTypes', () => {
+    it('expect fetch to have been called', () => {
+      window.fetch = jest.fn()
+      renderedComponent.instance().getInitialPokemonTypes();
+      expect(window.fetch).toHaveBeenCalled();
+    });
+    
+    it('expect addPokemon to have been called', async () => {
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          mockPokemon
+        )
+      }))
+
+      await renderedComponent.instance().getInitialPokemonTypes();
+
+      expect(mockAddPokemon.mock.calls.length).toEqual(1)
+    })
+  })
+
+  describe('getPokemonDetails', () => {
+    it('expect fetch to have been called', () => {
+      window.fetch = jest.fn()
+      renderedComponent.instance().getPokemonDetails(mockPokemon);
+      expect(window.fetch).toHaveBeenCalled();
+    });
+    
+    it('expect updatePokemon to have been called', async () => {
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          mockSinglePokemon
+        )
+      }))
+
+      await renderedComponent.instance().getPokemonDetails(mockPokemon);
+
+      expect(mockUpdatePokemon).toHaveBeenCalled();
+    })
+  })
+
+  describe('handleCardClick', () => {
+    
+  })
+
+  describe('renderCards', () => {
+
+  })
 })
