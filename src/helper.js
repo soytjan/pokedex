@@ -1,4 +1,4 @@
-export const fetchPokemon = async () => {
+export const fetchPokemonType = async () => {
   try {
     const url = 'http://localhost:3001/types';
     const response = await fetch(url);
@@ -26,4 +26,18 @@ export const fetchSinglePokemon = async (pokeId) => {
   } catch (error) {
     throw error;
   }
+}
+
+export const fetchAllPokemon = async () => {
+  const pokeTypes = await fetchPokemonType();
+  const allPokemon = pokeTypes.map( async (pokeType) => {
+    const fetchedPoke = pokeType.pokemon.map( async (id) => {
+      return await fetchSinglePokemon(id);
+    })
+    const resolvedPoke = await Promise.all(fetchedPoke)
+
+    return {...pokeType, pokemon: resolvedPoke}
+  })
+
+  return await Promise.all(allPokemon)
 }

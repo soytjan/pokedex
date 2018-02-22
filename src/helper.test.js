@@ -1,7 +1,7 @@
 import * as helper from './helper';
 
 describe('helper', () => {
-  describe('fetchPokemon', () => {
+  describe('fetchPokemonType', () => {
     beforeAll(() => {
       window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
         status: 200,
@@ -16,14 +16,14 @@ describe('helper', () => {
 
       expect(window.fetch).not.toHaveBeenCalled()
 
-      helper.fetchPokemon()
+      helper.fetchPokemonType()
 
       expect(window.fetch).toHaveBeenCalledWith(url);
     });
 
     it('should return an object if status code is ok', () => {
       const expected = {array: 'array of pokemon'};
-      const response = helper.fetchPokemon();
+      const response = helper.fetchPokemonType();
 
       expect(response).resolves.toEqual(expected);
     });
@@ -34,7 +34,7 @@ describe('helper', () => {
         )
       )
       const expected = Error('could not catch any pokemon :(');
-      const response = helper.fetchPokemon();
+      const response = helper.fetchPokemonType();
 
       expect(response).rejects.toEqual(expected);
     });
