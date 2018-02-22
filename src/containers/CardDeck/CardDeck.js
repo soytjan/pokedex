@@ -22,14 +22,15 @@ export class CardDeck extends Component {
 }
 
 CardDeck.propTypes = {
-
+  addPokemon: PropTypes.func,
+  pokemon: PropTypes.array
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   pokemon: state.pokemon,
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addPokemon: (pokemon) => dispatch(addPokemon(pokemon))
 })
 
