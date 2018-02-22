@@ -4,6 +4,14 @@ const pokemonReducer = (state = [], action) => {
       return [...state, ...action.pokemon];
     case 'UPDATE_POKEMON':
       return [...action.pokemon];
+    case 'TOGGLE_SELECTED':
+      return state.map(pokemon => {
+        if (pokemon.id === action.card.id) {
+          return action.card;
+        }
+
+        return pokemon;
+      }) 
     default: 
       return state;
   }

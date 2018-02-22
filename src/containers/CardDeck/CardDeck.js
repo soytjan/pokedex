@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPokemon, updatePokemon } from '../../actions';
+import { addPokemon, updatePokemon, toggleSelected } from '../../actions';
 import { fetchPokemonType, fetchAllPokemon } from '../../helper';
 import pikachu from '../../loading.gif';
 import Card from '../../components/Card/Card';
@@ -27,7 +27,11 @@ export class CardDeck extends Component {
   }
 
   handleCardClick = (card) => {
-    
+    const { toggleSelected } = this.props;
+    console.log('before', card)
+    const updatedCard = {...card, isSelected: !card.isSelected}
+    console.log('after', updatedCard)
+    toggleSelected(updatedCard);
   }
 
   renderCards = () => {
@@ -35,6 +39,7 @@ export class CardDeck extends Component {
     return pokemon.map(pokemon => {
       return <Card 
         pokemon={pokemon}
+        onClick={this.handleCardClick}
         key={pokemon.id} 
       />
     })
@@ -70,7 +75,8 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   addPokemon: (pokemon) => dispatch(addPokemon(pokemon)),
-  updatePokemon: (pokemon) => dispatch(updatePokemon(pokemon))
+  updatePokemon: (pokemon) => dispatch(updatePokemon(pokemon)),
+  toggleSelected: (onePokemon) => dispatch(toggleSelected(onePokemon))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDeck);
