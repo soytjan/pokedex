@@ -8,7 +8,9 @@ class App extends Component {
     return (
       <div className='App'>
         <h1 className='header'> POKéDEX </h1>
-        <CardDeck />
+        <section className='main'>
+          <CardDeck />
+        </section>
       </div>
     );
   }
