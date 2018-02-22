@@ -70,7 +70,6 @@ export class CardDeck extends Component {
 
     return (
       <section className='CardDeck'>
-        I'm the CardDeck!
         {this.renderCards()}
       </section>
     )
