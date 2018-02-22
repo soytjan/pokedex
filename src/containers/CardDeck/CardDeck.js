@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addPokemon } from '../../actions';
 import { fetchPokemon } from '../../helper';
 import pikachu from '../../loading.gif';
+import Card from '../../components/Card/Card';
 import './CardDeck.css';
 
 export class CardDeck extends Component {
@@ -21,6 +22,20 @@ export class CardDeck extends Component {
     this.setState({ isLoading: false })
   }
 
+  handleCardClick = () => {
+
+  }
+
+  renderCards = () => {
+    const { pokemon } = this.props;
+    return pokemon.map(pokemon => {
+      return <Card 
+        pokemon={pokemon}
+        key={pokemon.id} 
+      />
+    })
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -33,6 +48,7 @@ export class CardDeck extends Component {
     return (
       <section className='CardDeck'>
         I'm the CardDeck!
+        {this.renderCards()}
       </section>
     )
   }
