@@ -30,8 +30,6 @@ describe('Card', () => {
   })
 
   it('should match snapshot', () => {
-    
-
     expect(renderedComponent).toMatchSnapshot();
   })
 })
