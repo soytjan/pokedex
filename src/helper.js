@@ -28,8 +28,7 @@ export const fetchSinglePokemon = async (pokeId) => {
   }
 }
 
-export const fetchAllPokemon = async () => {
-  const pokeTypes = await fetchPokemonType();
+export const fetchAllPokemon = async (pokeTypes) => {
   const allPokemon = pokeTypes.map( async (pokeType) => {
     const fetchedPoke = pokeType.pokemon.map( async (id) => {
       return await fetchSinglePokemon(id);
