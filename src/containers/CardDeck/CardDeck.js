@@ -22,7 +22,8 @@ export class CardDeck extends Component {
 }
 
 CardDeck.propTypes = {
-
+  addPokemon: PropTypes.func,
+  pokemon: PropTypes.array
 };
 
 const mapStateToProps = state => ({
