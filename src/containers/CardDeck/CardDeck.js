@@ -26,11 +26,11 @@ CardDeck.propTypes = {
   pokemon: PropTypes.array
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   pokemon: state.pokemon,
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addPokemon: (pokemon) => dispatch(addPokemon(pokemon))
 })
 
