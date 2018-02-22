@@ -15,7 +15,6 @@ export class CardDeck extends Component {
     }
   }
 
-  // refactor this to break this out into different functions
   componentDidMount = async () => {
     this.setState({ isLoading: true })
     await this.getInitialPokemonTypes();
@@ -25,14 +24,22 @@ export class CardDeck extends Component {
 
   getInitialPokemonTypes = async () => {
     const { addPokemon } = this.props;
-    const pokemonType = await fetchPokemonType();
-    addPokemon(pokemonType);
+    try {
+      const pokemonType = await fetchPokemonType();
+      addPokemon(pokemonType);
+    } catch (error) {
+      throw(error)
+    }
   }
 
   getPokemonDetails = async (pokemon) => {
     const { updatePokemon } = this.props;
-    const allPokemon = await fetchAllPokemon(pokemon);
-    updatePokemon(allPokemon);
+    try {
+      const allPokemon = await fetchAllPokemon(pokemon);
+      updatePokemon(allPokemon);
+    } catch (error) {
+      throw error;
+    }
   } 
 
   handleCardClick = (card) => {
