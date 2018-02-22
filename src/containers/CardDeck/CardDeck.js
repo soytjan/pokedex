@@ -79,6 +79,7 @@ export class CardDeck extends Component {
 CardDeck.propTypes = {
   addPokemon: PropTypes.func,
   updatePokemon: PropTypes.func,
+  toggleSelected: PropTypes.func,
   pokemon: PropTypes.array
 };
 
