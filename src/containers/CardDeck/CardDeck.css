@@ -1,3 +1,8 @@
 .CardDeck {
   background-color: floralwhite;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 15px 10px;
+  min-width: 1100px;
 }

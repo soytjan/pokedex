@@ -1,0 +1,20 @@
+.Card {
+  max-height: 300px;
+  overflow: scroll;
+  border: 1px solid darkgray;
+  box-shadow: 5px 5px 4px gray;
+  max-width: 490px;
+}
+
+.Card:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+.card-header {
+  max-height: 78px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
