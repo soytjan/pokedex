@@ -45,6 +45,23 @@ describe('CardDeck', () => {
     expect(mockDispatch).toHaveBeenCalled();
   });
 
+  it('should have an isLoading state of true when the making initial fetch call in componentDidMount', () => {
+    expect(renderedComponent.state('isLoading')).toEqual(true);
+  });
+
+  it('should have an isLoading state of false when the initial data is fetched', async () => {
+    window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          mockPokemon
+        )
+      }))
+
+    await renderedComponent.instance().componentDidMount()
+
+    expect(renderedComponent.state('isLoading')).toEqual(false)
+  })
+
   describe('getInitialPokemonTypes', () => {
     it('expect fetch to have been called', () => {
       window.fetch = jest.fn()

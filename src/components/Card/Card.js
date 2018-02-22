@@ -27,6 +27,7 @@ const Card = ({pokemon, onClick}) => {
 
 Card.propTypes = {
   pokemon: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default Card;
