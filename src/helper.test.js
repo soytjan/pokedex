@@ -1,7 +1,8 @@
 import * as helper from './helper';
+import { mockPokemon, updatedMockPokemon } from './mockData';
 
 describe('helper', () => {
-  describe('fetchPokemon', () => {
+  describe('fetchPokemonType', () => {
     beforeAll(() => {
       window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
         status: 200,
@@ -16,14 +17,14 @@ describe('helper', () => {
 
       expect(window.fetch).not.toHaveBeenCalled()
 
-      helper.fetchPokemon()
+      helper.fetchPokemonType()
 
       expect(window.fetch).toHaveBeenCalledWith(url);
     });
 
     it('should return an object if status code is ok', () => {
       const expected = {array: 'array of pokemon'};
-      const response = helper.fetchPokemon();
+      const response = helper.fetchPokemonType();
 
       expect(response).resolves.toEqual(expected);
     });
@@ -34,7 +35,7 @@ describe('helper', () => {
         )
       )
       const expected = Error('could not catch any pokemon :(');
-      const response = helper.fetchPokemon();
+      const response = helper.fetchPokemonType();
 
       expect(response).rejects.toEqual(expected);
     });
@@ -77,5 +78,29 @@ describe('helper', () => {
 
       expect(response).rejects.toEqual(expected);
     });
+  })
+
+  describe('fetchAllPokemon', () => {
+    beforeAll(() => {
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          mockPokemon
+        )
+      }))
+    })
+
+    it('should call fetch', () => {
+      expect(window.fetch).not.toHaveBeenCalled()
+      helper.fetchAllPokemon()
+      expect(window.fetch).toHaveBeenCalled;
+    });
+
+    it('should return an array of updated pokemon', () => {
+      const expected = updatedMockPokemon;
+      const response = helper.fetchAllPokemon();
+
+      expect(response).resolves.toEqual(expected);
+    })
   })
 })

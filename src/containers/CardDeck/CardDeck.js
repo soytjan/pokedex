@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPokemon } from '../../actions';
-import { fetchPokemon } from '../../helper';
+import { fetchPokemonType, fetchAllPokemon } from '../../helper';
 import pikachu from '../../loading.gif';
 import Card from '../../components/Card/Card';
 import './CardDeck.css';
@@ -17,12 +17,12 @@ export class CardDeck extends Component {
 
   componentDidMount = async () => {
     this.setState({ isLoading: true })
-    const pokemon = await fetchPokemon();
+    const pokemon = await fetchAllPokemon();
     this.props.addPokemon(pokemon);
     this.setState({ isLoading: false })
   }
 
-  handleCardClick = () => {
+  handleCardClick = (card) => {
 
   }
 
