@@ -1,4 +1,5 @@
 import * as helper from './helper';
+import { mockPokemon, updatedMockPokemon } from './mockData';
 
 describe('helper', () => {
   describe('fetchPokemonType', () => {
@@ -77,5 +78,29 @@ describe('helper', () => {
 
       expect(response).rejects.toEqual(expected);
     });
+  })
+
+  describe('fetchAllPokemon', () => {
+    beforeAll(() => {
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          mockPokemon
+        )
+      }))
+    })
+
+    it('should call fetch', () => {
+      expect(window.fetch).not.toHaveBeenCalled()
+      helper.fetchAllPokemon()
+      expect(window.fetch).toHaveBeenCalled;
+    });
+
+    it('should return an array of updated pokemon', () => {
+      const expected = updatedMockPokemon;
+      const response = helper.fetchAllPokemon();
+
+      expect(response).resolves.toEqual(expected);
+    })
   })
 })

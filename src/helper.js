@@ -34,10 +34,10 @@ export const fetchAllPokemon = async () => {
     const fetchedPoke = pokeType.pokemon.map( async (id) => {
       return await fetchSinglePokemon(id);
     })
-    const resolvedPoke = await Promise.all(fetchedPoke)
+    const resolvedPoke = await Promise.all(fetchedPoke);
 
-    return {...pokeType, pokemon: resolvedPoke}
+    return {...pokeType, pokemon: resolvedPoke};
   })
 
-  return await Promise.all(allPokemon)
+  return await Promise.all(allPokemon);
 }
