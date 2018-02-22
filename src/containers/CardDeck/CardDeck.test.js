@@ -88,10 +88,22 @@ describe('CardDeck', () => {
   })
 
   describe('handleCardClick', () => {
-    
-  })
+    it('expect toggleSelected to have been called with an updated card passed in', () => {
+      const card = {
+        id: "2", 
+        name: "fighting", 
+        pokemon: Array(5)
+      }
+      const updatedCard = {
+        id: "2", 
+        name: "fighting", 
+        pokemon: Array(5),
+        isSelected: true
+      }
 
-  describe('renderCards', () => {
+      renderedComponent.instance().handleCardClick(card)
 
+      expect(mockToggleSelected).toHaveBeenCalledWith(updatedCard)
+    })
   })
 })
